@@ -1,3 +1,6 @@
+This project is hosted on vercel: https://wallet-wise-rosy.vercel.app/
+To get started with WalletWise please add account and initial money in the account section
+
 # WalletWise Expense Tracker
 
 WalletWise is a beautiful, fully responsive, and simple expense tracker built directly inside the browser using HTML, CSS, JavaScript, and Local Storage.
