@@ -1,7 +1,3 @@
-
-
-
-
 let accounts = JSON.parse(localStorage.getItem('walletwise_accounts')) || [];
 let transactions = JSON.parse(localStorage.getItem('walletwise_transactions')) || [];
 let currentDateOffset = new Date();
@@ -402,7 +398,25 @@ function calculateTotals() {
 
     document.getElementById('total-income').innerText = `₹${income.toFixed(2)}`;
     document.getElementById('total-expense').innerText = `₹${expense.toFixed(2)}`;
-    document.getElementById('total-balance').innerText = `₹${netWorth.toFixed(2)}`;
+    // document.getElementById('total-balance').innerText = `₹${netWorth.toFixed(2)}`;
+    if(accounts.length===0){
+    document.getElementById('total-balance')
+    .innerHTML= 
+    `₹0.00
+    <span style="
+        display:block;
+        margin-top:5px;
+        font-size:.9rem;
+        font-weight:400;
+        color:rgba(1, 9, 1, 1)">
+        Woohoo! New user, please add account from the 'Accounts' section to get started.
+    </span>`;
+}
+else{
+    document.getElementById('total-balance')
+    .innerText=`₹${netWorth.toFixed(2)}`;
+}
+
     document.getElementById('net-worth').innerText = `₹${netWorth.toFixed(2)}`;
 }
 
