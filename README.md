@@ -3,7 +3,7 @@ To get started with WalletWise please add account and initial money in the accou
 
 # WalletWise Expense Tracker
 
-WalletWise is a beautiful, fully responsive, and simple expense tracker built directly inside the browser using HTML, CSS, JavaScript, and Local Storage.
+WalletWise is a responsive and simple expense tracking web application developed to help users manage their finances efficiently. The application allows users to track income and expenses, manage multiple accounts, and visualize spending patterns. It's built directly inside the browser using HTML, CSS, JavaScript, and Local Storage.
 
 ## Features
 - **Offline First**: All your financial data is saved locally on your device via browser Local Storage. No database setup required.
