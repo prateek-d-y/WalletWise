@@ -23,7 +23,4 @@ WalletWise is a beautiful, fully responsive, and simple expense tracker built di
 - `js/app.js`: State management, DOM manipulation, Modal control, and Chart initialization.
 
 ## Video
-
-<video width="700" controls>
-  <source src="./WalletWise.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/e51c692d-a4ae-4007-9163-16084f077793
