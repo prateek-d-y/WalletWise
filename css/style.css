@@ -1,3 +1,7 @@
+
+/* I have used AI tools to generate the css to get better UI/UX. */
+
+
 :root {
     /* Light Theme Variables */
     --bg-color: #f4f7f6;
@@ -49,11 +53,9 @@ body {
     overflow-x: hidden;
 }
 
-/* Typography */
 h1, h2, h3, h4 { color: var(--text-main); font-weight: 600; }
 p, span { color: var(--text-muted); }
 
-/* --- Layout & Nav --- */
 .top-nav {
     display: flex;
     justify-content: space-between;
@@ -130,10 +132,10 @@ p, span { color: var(--text-muted); }
     color: var(--primary);
 }
 
-/* --- Main Content Area --- */
+/* --- Main content  --- */
 .app-content {
     flex: 1;
-    padding: 1.5rem 1rem 5rem 1rem; /* bottom padding for nav */
+    padding: 1.5rem 1rem 5rem 1rem; 
     max-width: 600px;
     margin: 0 auto;
     width: 100%;
@@ -436,6 +438,4 @@ p, span { color: var(--text-muted); }
         gap: 2rem;
     }
 
-    /* Override hidden views for desktop if we want side-by-side */
-    /* For a simple SPA, keeping it single view is fine, just wider */
 }

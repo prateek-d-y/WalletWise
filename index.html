@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>WalletWise - Expense Tracker</title>
-    <!-- Google Fonts -->
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/style.css">
+
 </head>
 <body class="dark-mode">
 
@@ -42,7 +40,7 @@
 
         <!-- 1. Records Section -->
         <section id="records-view" class="view active">
-            <!-- Summary Cards -->
+
             <div class="summary-cards">
                 <div class="card balance-card">
                     <h3>Total Balance</h3>
@@ -66,7 +64,7 @@
                 </div>
             </div>
 
-            <!-- Filter & List Header -->
+            <!-- List Header -->
             <div class="section-header">
                 <h3>Transactions</h3>
                 <div class="date-nav hidden" id="date-nav" style="display: none; align-items: center; gap: 0.5rem; background: var(--input-bg); padding: 0.2rem 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border-color);">
@@ -84,7 +82,7 @@
 
             <!-- Transaction List -->
             <div class="transaction-list" id="transaction-list">
-                <!-- Transactions injected by JS -->
+                <!-- like js code updation  comes here -->
             </div>
 
             <!-- Floating Action Button for Records -->
@@ -116,7 +114,7 @@
             <div class="category-breakdown card" id="category-breakdown">
                 <h4>Category Details</h4>
                 <div id="category-list">
-                    <!-- Categories injected by JS -->
+                    <!-- Categories will b injected by JS -->
                 </div>
             </div>
         </section>
@@ -133,7 +131,7 @@
             </div>
 
             <div class="accounts-list" id="accounts-list">
-                <!-- Accounts injected by JS -->
+                <!-- initially add accounts. Accounts will be injected by JS -->
             </div>
 
             <button class="btn-primary block-btn" onclick="openModal('account-modal')">
@@ -143,7 +141,7 @@
 
     </main>
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom navigation for responsive-->
     <nav class="bottom-nav">
         <button class="nav-item active" data-target="records-view">
             <i class="fa-solid fa-list-ul"></i>
@@ -183,9 +181,7 @@
 
                 <div class="form-group">
                     <label for="trans-account">Account</label>
-                    <select id="trans-account" required>
-                        <!-- Options injected by JS -->
-                    </select>
+                    <select id="trans-account" required></select>
                 </div>
 
                 <div class="form-group">

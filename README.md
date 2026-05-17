@@ -1,5 +1,5 @@
-This project is hosted on vercel: https://wallet-wise-rosy.vercel.app/<br>
-To get started with WalletWise please add account and initial money in the account section
+This project is live on url: https://wallet-wise-rosy.vercel.app/.<br>
+To get started with WalletWise please add account and initial money in the account section.
 
 # WalletWise Expense Tracker
 

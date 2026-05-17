@@ -1,23 +1,25 @@
-// STATE MANAGEMENT
+
+
+
+
 let accounts = JSON.parse(localStorage.getItem('walletwise_accounts')) || [];
 let transactions = JSON.parse(localStorage.getItem('walletwise_transactions')) || [];
 let currentDateOffset = new Date();
-// DOM Elements
+
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 const navItems = document.querySelectorAll('.nav-item');
 const views = document.querySelectorAll('.view');
 
-// Initialize App
+
 function initApp() {
-    // Theme setup
+
     const savedTheme = localStorage.getItem('walletwise_theme');
     if (savedTheme === 'light') {
         body.classList.remove('dark-mode');
         themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
     }
 
-    // Set default datetime to now
     const now = new Date();
     now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
     document.getElementById('trans-datetime').value = now.toISOString().slice(0,16);
@@ -25,26 +27,22 @@ function initApp() {
     updateUI();
 }
 
-// THEME TOGGLE
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
     localStorage.setItem('walletwise_theme', isDark ? 'dark' : 'light');
     themeToggle.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     
-    // Update charts color theme if exists
     if(expensePieChart) updateCharts();
 });
 
-// NAVIGATION
+
 navItems.forEach(item => {
     item.addEventListener('click', () => {
-        // Remove active class from all
         navItems.forEach(nav => nav.classList.remove('active'));
         views.forEach(view => view.classList.add('hidden'));
         views.forEach(view => view.classList.remove('active'));
 
-        // Add active class to all navs pointing to this target
         const targetId = item.getAttribute('data-target');
         const matchingNavs = document.querySelectorAll(`.nav-item[data-target="${targetId}"]`);
         matchingNavs.forEach(nav => nav.classList.add('active'));
@@ -53,14 +51,13 @@ navItems.forEach(item => {
         targetView.classList.remove('hidden');
         targetView.classList.add('active');
 
-        // Re-render charts if analysis view
         if(item.getAttribute('data-target') === 'analysis-view') {
             updateCharts();
         }
     });
 });
 
-// MODALS
+
 window.openModal = function(modalId) {
     document.getElementById(modalId).classList.add('active');
     if(modalId === 'transaction-modal') {
@@ -72,14 +69,13 @@ window.closeModal = function(modalId) {
     document.getElementById(modalId).classList.remove('active');
 }
 
-// Close modal on outside click
 window.onclick = function(event) {
     if (event.target.classList.contains('modal')) {
         event.target.classList.remove('active');
     }
 }
 
-// ACCOUNTS LOGIC
+
 document.getElementById('account-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('acc-name').value;
@@ -115,7 +111,6 @@ function populateAccountSelect() {
     });
 }
 
-// DYNAMIC CATEGORIES LOGIC
 const typeRadios = document.querySelectorAll('input[name="type"]');
 const categorySelect = document.getElementById('trans-category');
 
@@ -155,10 +150,9 @@ typeRadios.forEach(radio => {
     });
 });
 
-// Initialize on load
 updateCategoryOptions('expense');
 
-// TRANSACTIONS LOGIC
+
 document.getElementById('transaction-form').addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -176,7 +170,6 @@ document.getElementById('transaction-form').addEventListener('submit', (e) => {
 
     if(!accountId) return;
 
-    // Deduct/Add to account
     const accountIndex = accounts.findIndex(a => a.id === accountId);
     if(accountIndex !== -1) {
         if(type === 'expense') {
@@ -207,7 +200,6 @@ document.getElementById('transaction-form').addEventListener('submit', (e) => {
     closeModal('transaction-modal');
     e.target.reset();
     
-    // reset datetime
     const now = new Date();
     now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
     document.getElementById('trans-datetime').value = now.toISOString().slice(0,16);
@@ -215,7 +207,7 @@ document.getElementById('transaction-form').addEventListener('submit', (e) => {
     updateUI();
 });
 
-// UI UPDATES
+
 function updateUI() {
     renderAccounts();
     renderTransactions();
@@ -416,14 +408,14 @@ document.getElementById('next-date').addEventListener('click', () => {
     updateUI();
 });
 
-// DATA SAVING
+
 function saveData() {
     localStorage.setItem('walletwise_accounts', JSON.stringify(accounts));
     localStorage.setItem('walletwise_transactions', JSON.stringify(transactions));
 }
 
 
-// --- CHARTS LOGIC ---
+
 let expensePieChart;
 let expenseLineChart;
 
@@ -435,7 +427,7 @@ function updateCharts() {
 
     const expenses = transactions.filter(t => t.type === 'expense');
     
-    // Category Breakdown Data
+
     const categoryTotals = {};
     expenses.forEach(tx => {
         categoryTotals[tx.category] = (categoryTotals[tx.category] || 0) + tx.amount;
@@ -444,13 +436,13 @@ function updateCharts() {
     const categories = Object.keys(categoryTotals);
     const amounts = Object.values(categoryTotals);
     
-    // Define vibrant colors
+
     const colors = [
         '#ef4444', '#f97316', '#f59e0b', '#84cc16', 
         '#10b981', '#06b6d4', '#3b82f6', '#8b5cf6', '#d946ef'
     ];
 
-    // Render Pie Chart
+
     const pieCtx = document.getElementById('expense-pie-chart').getContext('2d');
     if(expensePieChart) expensePieChart.destroy();
     
@@ -475,7 +467,7 @@ function updateCharts() {
         }
     });
 
-    // Render Line Chart (Trend over last 7 days)
+
     const lineCtx = document.getElementById('expense-line-chart').getContext('2d');
     if(expenseLineChart) expenseLineChart.destroy();
 
@@ -486,7 +478,7 @@ function updateCharts() {
         d.setDate(d.getDate() - i);
         last7Days.push(d.toLocaleDateString('en-US', {month:'short', day:'numeric'}));
         
-        // Sum expenses for this day
+
         const dayTotal = expenses.filter(tx => new Date(tx.datetime).toDateString() === d.toDateString())
                                  .reduce((sum, tx) => sum + tx.amount, 0);
         trendData.push(dayTotal);
@@ -516,7 +508,7 @@ function updateCharts() {
         }
     });
 
-    // Update Category Details List
+
     const catList = document.getElementById('category-list');
     catList.innerHTML = '';
     const totalExp = amounts.reduce((a,b)=>a+b, 0);
@@ -546,5 +538,5 @@ function updateCharts() {
     }
 }
 
-// Initialize on load
+
 document.addEventListener('DOMContentLoaded', initApp);
