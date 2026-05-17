@@ -65,6 +65,33 @@ window.openModal = function(modalId) {
     }
 }
 
+
+// making clickables income/expense
+
+const quickCards =
+document.querySelectorAll('.quick-add');
+
+quickCards.forEach(card=>{
+
+    card.addEventListener('click',()=>{
+
+        const type =
+        card.dataset.type;
+
+        openModal('transaction-modal');
+
+        document.getElementById(
+            `type-${type}`
+        ).checked=true;
+
+        updateCategoryOptions(type);
+
+    });
+
+});
+
+
+
 window.closeModal = function(modalId) {
     document.getElementById(modalId).classList.remove('active');
 }

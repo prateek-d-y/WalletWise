@@ -188,6 +188,10 @@ p, span { color: var(--text-muted); }
     display: flex;
     align-items: center;
     gap: 1rem;
+    cursor:pointer;
+    transition:transform .2s ease;
+    transform:scale(1.03);
+
 }
 
 .card-icon {
